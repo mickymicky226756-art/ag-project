@@ -2144,6 +2144,22 @@
         loginRegisterArea.style.display = 'flex';
         dashboardArea.style.display = 'none';
         adminDashboardArea.style.display = 'none';
+
+        // NEW: Check for referral parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const referralCodeFromURL = urlParams.get('ref');
+        
+        if (referralCodeFromURL) {
+            // Switch to Register tab and pre-fill
+            switchAuthTab('register'); 
+            const registerReferralInput = document.getElementById('register-referral');
+            if (registerReferralInput) {
+                registerReferralInput.value = referralCodeFromURL;
+            }
+        } else {
+            // Default to Login tab
+            switchAuthTab('login');
+        }
         
     </script>
 </body>
